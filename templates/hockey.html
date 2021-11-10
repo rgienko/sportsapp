@@ -1,0 +1,193 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="container-fluid text-light">
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active text-light" id="live" role="tabpanel" aria-labelledby="live-tab">
+            {% for key, values in my_live_hockey_scores.items %} <!-- For each league -->
+                <div class="row my-3 shadow" style="background-color: #16213E">
+                    <h3 class="mb-0 mt-2">{{ key }}</h3>
+                    {% for v in values %}
+                        {% if forloop.first %}
+                            <div class="row mb-2">
+                                <span class="text-muted my-0 py-0">{{ v.Stg.Cnm }}</span>
+                            </div>
+                        {% endif %}
+
+                        <div class="col-md-5 rounded-pill mx-4 mb-4" style="{% if v.Eps == 'FT' %}border:2px solid #0F3460;{% else %}border:2px solid #E94560{% endif %}" >
+                            <div class="row d-flex align-items-center py-2">
+                                <div class="col-2 align-items-center pb-1 text-center" style="{% if v.Eps == 'FT' %}{% else %}color:#E94560 {% endif %}">
+                                    {{ v.Eps }}
+                                </div>
+                                <div class="col-9">
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T1.0.Img }}" alt="{{ v.T1.0.Nm }}" style="height:25px">
+                                            <span class="{% if v.Tr1 > v.Tr2 %}fw-bolder{% endif %}">{{ v.T1.0.Nm }}
+                                                <span class="float-end align-items-center">{{ v.Tr1 }}</span></span><br>
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T2.0.Img }}" alt="{{ v.T2.0.Nm }}" style="height: 25px">
+                                            <span class="{% if v.Tr2 > v.Tr1 %}fw-bolder{% endif %}">{{ v.T2.0.Nm }}
+                                                <span class="float-end de-flex align-items-center">{{ v.Tr2 }}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% empty %}
+                <div class="col-12 mt-5">
+                    <h5 class="text-center"><i class="fas fa-info-circle"></i> There no live games in progress.</h5>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="tab-pane text-light" id="today-minus-two-days" role="tabpanel" aria-labelledby="today-minus-two-days-tab">
+            {% for key, values in my_minus_two_days_hockey_scores.items %} <!-- For each league -->
+                <div class="row my-3 shadow" style="background-color: #16213E">
+                    <h3 class="mb-0 mt-2">{{ key }}</h3>
+                    {% for v in values %}
+                        {% if forloop.first %}
+                            <div class="row mb-2">
+                                <span class="text-muted my-0 py-0">{{ v.Stg.Cnm }}</span>
+                            </div>
+                        {% endif %}
+
+                        <div class="col-md-5 rounded-pill mx-4 mb-4" style="{% if v.Eps == 'FT' %}border:2px solid #0F3460;
+                                                                            {% elif v.Eps == 'OT'%} border:2px solid #0F3460;
+                                                                            {% elif v.Eps == 'AP'%} border:2px solid #0F3460;
+                                                                            {% else %}border:2px solid #E94560{% endif %}" >
+                            <div class="row d-flex align-items-center py-2">
+                                <div class="col-2 align-items-center pb-1 text-center" style="{% if v.Eps == 'FT' %}{% else %}color:#E94560 {% endif %}">
+                                    {{ v.Eps }}
+                                </div>
+                                <div class="col-9">
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T1.0.Img }}" alt="{{ v.T1.0.Nm }}" style="height:25px">
+                                            <span class="{% if v.Tr1 > v.Tr2 %}fw-bolder{% endif %}">{{ v.T1.0.Nm }}
+                                                <span class="float-end align-items-center">{{ v.Tr1 }}</span></span><br>
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T2.0.Img }}" alt="{{ v.T2.0.Nm }}" style="height: 25px">
+                                            <span class="{% if v.Tr2 > v.Tr1 %}fw-bolder{% endif %}">{{ v.T2.0.Nm }}
+                                                <span class="float-end de-flex align-items-center">{{ v.Tr2 }}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% empty %}
+                <div class="col-12 mt-5">
+                    <h5 class="text-center"><i class="fas fa-info-circle"></i> There no live games in progress.</h5>
+                </div>
+            {% endfor %}
+        </div>
+      <div class="tab-pane" id="today_minus_day" role="tabpanel" aria-labelledby="today-minus-day-tab">
+          {% for key, values in my_today_minus_day_hockey_scores.items %} <!-- For each league -->
+                <div class="row my-3 shadow" style="background-color: #16213E">
+                    <h3 class="mb-0 mt-2">{{ key }}</h3>
+                    {% for v in values %}
+                        {% if forloop.first %}
+                            <div class="row mb-2">
+                                <span class="text-muted my-0 py-0">{{ v.Stg.Cnm }}</span>
+                            </div>
+                        {% endif %}
+                        <div class="col-md-5 rounded-pill mx-4 mb-4" style="{% if v.Eps == 'FT' %}border:2px solid #0F3460;
+                                                                            {% elif v.Eps == 'OT'%} border:2px solid #0F3460;
+                                                                            {% elif v.Eps == 'AP'%} border:2px solid #0F3460;
+                                                                            {% else %}border:2px solid #E94560{% endif %}">
+                            <div class="row d-flex align-items-center py-2">
+                                <div class="col-2 align-items-center pb-1 text-center" style="{% if v.Eps == 'FT' %}{% else %}color:#E94560 {% endif %}">
+                                    {{ v.Eps }}
+                                </div>
+                                <div class="col-9">
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T1.0.Img }}" alt="{{ v.T1.0.Nm }}" style="height:25px">
+                                            <span class="{% if v.Tr1 > v.Tr2 %}fw-bolder{% endif %}">{{ v.T1.0.Nm }}
+                                                <span class="float-end align-items-center">{{ v.Tr1 }}</span></span><br>
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T2.0.Img }}" alt="{{ v.T2.0.Nm }}" style="height: 25px">
+                                            <span class="{% if v.Tr2 > v.Tr1 %}fw-bolder{% endif %}">{{ v.T2.0.Nm }}
+                                                <span class="float-end de-flex align-items-center">{{ v.Tr2 }}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% empty %}
+                <div class="col-12 mt-5">
+                    <h5 class="text-center"><i class="fas fa-info-circle"></i> There no live games in progress.</h5>
+                </div>
+            {% endfor %}
+      </div>
+        <div class="tab-pane" id="today" role="tabpanel" aria-labelledby="today-tab">
+            {% for key, values in my_today_nhl_scores.items %}
+                <div class="row my-3 shadow" style="background-color: #16213E">
+                    <h3 class="mb-0 mt-2">{{ key }}</h3>
+                    {% for v in values %}
+                        {% if forloop.first %}
+                            <div class="row mb-2">
+                                <span class="text-muted my-0 py-0">{{ v.Stg.Cnm }}</span>
+                            </div>
+                        {% endif %}
+                        <div class="col-md-5 rounded-pill mx-4 mb-4" style="{% if v.Eps == 'FT' %}border:2px solid #0F3460;{% else %}border:2px solid #E94560{% endif %}" >
+                            <div class="row d-flex align-items-center py-2">
+                                <div class="col-2 align-items-center pb-1 text-center" style="{% if v.Eps == 'FT' %}{% else %}color:#E94560 {% endif %}">
+                                    {{ v.Eps }}
+                                </div>
+                                <div class="col-9">
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T1.0.Img }}" alt="{{ v.T1.0.Nm }}" style="height:25px">
+                                            <span class="{% if v.Tr1 > v.Tr2 %}fw-bolder{% endif %}">{{ v.T1.0.Nm }}
+                                                <span class="float-end align-items-center">{{ v.Tr1 }}</span></span><br>
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T2.0.Img }}" alt="{{ v.T2.0.Nm }}" style="height: 25px">
+                                            <span class="{% if v.Tr2 > v.Tr1 %}fw-bolder{% endif %}">{{ v.T2.0.Nm }}
+                                                <span class="float-end de-flex align-items-center">{{ v.Tr2 }}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% empty %}
+                <div class="col-12 mt-5">
+                    <h5 class="text-center"><i class="fas fa-info-circle"></i> There no live games in progress.</h5>
+                </div>
+            {% endfor %}
+
+          {% for key, values in my_today_hockey_scores.items %}
+              {% if key == 'Regular season' %}
+              {% else %}<!-- For each league -->
+                <div class="row my-3 shadow" style="background-color: #16213E">
+                   <h3 class="mb-0 mt-2">{{ key }}</h3>
+                    {% for v in values %}
+                        {% if forloop.first %}
+                            <div class="row mb-2">
+                                <span class="text-muted my-0 py-0">{{ v.Stg.Cnm }}</span>
+                            </div>
+                        {% endif %}
+                        <div class="col-md-5 rounded-pill mx-4 mb-4" style="{% if v.Eps == 'FT' %}border:2px solid #0F3460;{% else %}border:2px solid #E94560{% endif %}" >
+                            <div class="row d-flex align-items-center py-2">
+                                <div class="col-2 align-items-center pb-1 text-center" style="{% if v.Eps == 'FT' %}{% else %}color:#E94560 {% endif %}">
+                                    {{ v.Eps }}
+                                </div>
+                                <div class="col-9">
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T1.0.Img }}" alt="{{ v.T1.0.Nm }}" style="height:25px">
+                                            <span class="{% if v.Tr1 > v.Tr2 %}fw-bolder{% endif %}">{{ v.T1.0.Nm }}
+                                                <span class="float-end align-items-center">{{ v.Tr1 }}</span></span><br>
+                                    <img src="https://lsm-static-prod.livescore.com/medium/{{ v.T2.0.Img }}" alt="{{ v.T2.0.Nm }}" style="height: 25px">
+                                            <span class="{% if v.Tr2 > v.Tr1 %}fw-bolder{% endif %}">{{ v.T2.0.Nm }}
+                                                <span class="float-end de-flex align-items-center">{{ v.Tr2 }}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+              {% endif %}
+            {% empty %}
+                <div class="col-12 mt-5">
+                    <h5 class="text-center"><i class="fas fa-info-circle"></i> There no live games in progress.</h5>
+                </div>
+            {% endfor %}
+      </div>
+    <div class="tab-pane" id="today_plus_day" role="tabpanel" aria-labelledby="today_plus_day-tab">
+          {{ today_plus_day }}
+      </div>
+    <div class="tab-pane" id="today_plus_two_days" role="tabpanel" aria-labelledby="today_plus_two_days-tab">
+          {{ today_plus_two_days }}
+      </div>
+    </div>
+</div>
+
+{% endblock %}

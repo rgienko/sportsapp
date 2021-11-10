@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+
+
+    <script src="https://kit.fontawesome.com/69cb8fac06.js" crossorigin="anonymous"></script>
+
+
+    <meta charset="utf-8">
+
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Title</title>
+
+    <style>
+        .btn-toggle-nav a {
+              display: inline-flex;
+              padding: .1875rem .5rem;
+              margin-top: .125rem;
+              margin-left: 1.25rem;
+              text-decoration: none;
+            }
+            .btn-toggle-nav a:hover,
+            .btn-toggle-nav a:focus {
+              background-color: #d2f4ea;
+            }
+    </style>
+</head>
+<body class="border-0" style="background-color: #1A1A2E">
+    <div class="container-fluid fixed-top" style="background-color: #1A1A2E">
+        <div class="container pb-1">
+            <h1 class="text-center">
+                <a class="text-center text-decoration-none text-success" href="{% url 'home' %}">My Sports App</a>
+            </h1>
+        </div>
+
+        <nav class="navbar navbar-expand-md">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarText">
+                    <ul class="navbar-nav mb-lg-0 justify-content-center">
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-outline-light rounded-pill pb-2 active" aria-current="page" href="hockey"><i class="fas fa-hockey-puck"></i> Hockey</a>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-outline-light rounded-pill pb-2" aria-current="page" href=""><i class="fas fa-baseball-ball"></i> Soccer</a>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-outline-light rounded-pill pb-2" aria-current="page" href=""><i class="fas fa-baseball-ball"></i> Basketball</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row mt-3 gx-5 border-0">
+            <ul class="nav nav-tabs justify-content-center pb-2" id="myTab" role="tablist" style="border-bottom-color: #0F3460">
+                <li class="nav-item mx-4" role="presentation">
+                    <button class="active btn btn-warning" id="live-tab" data-bs-toggle="tab" data-bs-target="#live" type="button" role="tab" aria-controls="live" aria-selected="true">
+                        <span class="fw-bold text-uppercase">LIVE</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-primary py-0 mx-3" id="today-minus-two-days-tab" data-bs-toggle="tab" data-bs-target="#today-minus-two-days" type="button" role="tab" aria-controls="today-minus-two-days" aria-selected="false">
+                        <span class="text-uppercase">{{ today_minus_two|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_minus_two|date:'d M' }}
+                        </span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-primary py-0 mx-3" id="today_minus_day-tab" data-bs-toggle="tab" data-bs-target="#today_minus_day" type="button" role="tab" aria-controls="today_minus_day" aria-selected="false">
+                         <span class="text-uppercase">{{ today_minus_day|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_minus_day|date:'d M' }}
+                        </span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-primary py-0 mx-3" id="today-tab" data-bs-toggle="tab" data-bs-target="#today" type="button" role="tab" aria-controls="today" aria-selected="false">
+                        <span class="text-uppercase">Today <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today|date:'d M' }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-primary py-0 mx-3" id="today_plus_day-tab" data-bs-toggle="tab" data-bs-target="#today_plus_day" type="button" role="tab" aria-controls="today_plus_day" aria-selected="false">
+                        <span class="text-uppercase">{{ today_plus_day|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_plus_day|date:'d M' }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-primary py-0 mx-3" id="today_plus_two_days-tab" data-bs-toggle="tab" data-bs-target="#today_plus_two_days" type="button" role="tab" aria-controls="today_plus_two_days" aria-selected="false">
+                        <span class="text-uppercase">{{ today_plus_two_days|date:'D' }}  <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_plus_two_days|date:'d M' }}</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top:200px">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
