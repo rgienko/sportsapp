@@ -7,15 +7,14 @@
             <div class="row my-3 shadow" style="background-color: #16213E">
                 {% for game in league.list %}
                     {% if forloop.first %}
-                        <div class="row my-2">
-                            <div class="col-md-1 border">
+                        <div class="row my-2 mb-4">
+                            <div class="col-md-3 mx-4">
                                 <img src="{{ game.league.logo }}" alt="pic" class="thumbnail" style="height:50px">
-                            </div>
-                            <div class="col-md-10 p-0">
+                                <br>
+
                                 <h4 style="display: inline">{{ game.league.name }}</h4><br>
                                 <span class="text-muted my-0 py-0">{{ game.country.name}}</span>
                             </div>
-
                         </div>
                         <div class="col-md-5 rounded-pill mx-4 mb-4" style="border:2px solid #0F3460" >
                             <div class="row">

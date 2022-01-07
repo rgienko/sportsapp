@@ -20,10 +20,11 @@ def index(request):
 
     headers = {
         'x-rapidapi-host': "v1.hockey.api-sports.io",
-        'x-rapidapi-key': "6178d2f0b7fc6ce443e3362eb18b9cc8"
+        'x-rapidapi-key': "8cda7f9e3ef5b2dc538fca8432320b5d"
     }
 
-    response = requests.request("GET", url+get_what+"?date="+str(dt)+"&timezone="+str(timezone), headers=headers, data=payload)
+    response = requests.request("GET", url + get_what + "?date=" + str(dt),
+                                headers=headers, data=payload)
 
     hockey_games = response.json()['response']
 
@@ -35,3 +36,19 @@ def index(request):
                   })
 
 
+def getTimeZone():
+    import http.client
+
+    conn = http.client.HTTPSConnection("v1.hockey.api-sports.io")
+
+    headers = {
+        'x-rapidapi-host': "v1.hockey.api-sports.io",
+        'x-rapidapi-key': "8cda7f9e3ef5b2dc538fca8432320b5d"
+    }
+
+    conn.request("GET", "/timezone", headers=headers)
+
+    res = conn.getresponse()
+    data = res.read()
+
+    print(data.decode("utf-8"))
