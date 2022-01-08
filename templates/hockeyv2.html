@@ -16,29 +16,43 @@
                                 <span class="text-muted my-0 py-0">{{ game.country.name}}</span>
                             </div>
                         </div>
-                        <div class="col-md-5 rounded-pill mx-4 mb-4" style="border:2px solid #0F3460" >
+                        <div class="col-md-5 rounded-pill mx-4 mb-4 py-3" style="border:2px solid #0F3460" >
                             <div class="row">
-                                <div class="d-flex col-md-2 align-items-center border">
-                                    {% if game.status.short == 'NS' %}
-                                        {{ game.time }}
-                                    {% else %}
-                                        {{ game.status.short }}
-                                    {% endif %}
+                                <div class="pt-2 col-md-2 text-center align-middle border d-flex align-items-center">
+                                    <p class="border">
+                                        {% if game.status.short == 'NS' %}
+                                            {{ game.time }}
+                                        {% else %}
+                                            {{ game.status.short }}
+                                        {% endif %}
+                                    </p>
                                 </div>
 
-                                <div class="col-md-10 border pe-4">
-                                    <img src="{{ game.teams.home.logo }}" alt="{{ game.teams.home.name }}" style="height:25px; width:25px" loading="lazy">
-                                        {{ game.teams.home.name }} <span class="float-end align-items-center">
-                                    {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.home }} {% endif %}</span><br>
-                                    <img src="{{ game.teams.away.logo }}" alt="{{ game.teams.away.name }}" style="height:25px; width:25px" loading="lazy">
-                                        {{ game.teams.away.name }} <span class="float-end align-items-center">
-                                    {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.away }} {% endif %}</span><br>
+                                <div class="col-md-10 border pe-4 py-2">
+                                    <div class="row">
+                                        <div class="col-md-2 border">
+                                            <img src="{{ game.teams.home.logo }}" alt="{{ game.teams.home.name }}" style="height:32px; width:32px" loading="lazy">
+                                        </div>
+                                        <div class="col-9 border d-flex align-items-center">
+                                            {{ game.teams.home.name }}
+                                        </div>
+                                        <div class="col-1 border d-flex align-items-center">
+                                            {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.home }} {% endif %}<br>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img src="{{ game.teams.away.logo }}" alt="{{ game.teams.away.name }}" style="height:25px; width:25px" loading="lazy">
+                                            {{ game.teams.away.name }} <span class="float-end align-items-center">
+                                            {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.away }} {% endif %}</span><br>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     {% else %}
-                        <div class="col-md-5 rounded-pill mx-4 mb-4" style="border:2px solid #0F3460" >
+                        <div class="col-md-5 rounded-pill mx-4 mb-4 py-3" style="border:2px solid #0F3460" >
                             <div class="row">
                                 <div class="d-flex col-md-2 align-items-center border">
                                     {% if game.status.short == 'NS' %}

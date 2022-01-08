@@ -16,6 +16,7 @@ def index(request):
 
     get_what = 'games'
     dt = date.today()
+    print(str(dt))
     timezone = get_localzone()
 
     headers = {
@@ -23,10 +24,16 @@ def index(request):
         'x-rapidapi-key': "8cda7f9e3ef5b2dc538fca8432320b5d"
     }
 
-    response = requests.request("GET", url + get_what + "?date=" + str(dt),
+    # response = requests.request("GET", url + get_what + "?date=" + str(dt) + "&timezone=" + str(timezone),
+    #                           headers=headers, data=payload)
+
+    response = requests.request("GET",
+                                url + get_what + "?date=" + str(dt) + "&timezone=America/Chicago"
+                                + "&league=" + str(57) + "&season=" + str(2021),
                                 headers=headers, data=payload)
 
     hockey_games = response.json()['response']
+    print(str(hockey_games))
 
     return render(request, '../templates/hockeyv2.html',
                   {
