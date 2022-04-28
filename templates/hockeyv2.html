@@ -2,80 +2,66 @@
 
 {% block content %}
     <div class="container-fluid text-white">
-        {% regroup hockey_games|dictsort:"league.name" by league.name as league_games%}
-        {% for league in league_games %}
-            <div class="row my-3 shadow" style="background-color: #16213E">
-                {% for game in league.list %}
-                    {% if forloop.first %}
-                        <div class="row my-2 mb-4">
-                            <div class="col-md-3 mx-4">
-                                <img src="{{ game.league.logo }}" alt="pic" class="thumbnail" style="height:50px">
-                                <br>
 
-                                <h4 style="display: inline">{{ game.league.name }}</h4><br>
-                                <span class="text-muted my-0 py-0">{{ game.country.name}}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-5 rounded-pill mx-4 mb-4 py-3" style="border:2px solid #0F3460" >
-                            <div class="row">
-                                <div class="pt-2 col-md-2 text-center align-middle border d-flex align-items-center">
+            <div class="row my-3 shadow d-flex justify-content-center" style="background-color: #16213E">
+                <div class="row my-2 mb-4">
+                    <div class="col-md-3 mx-4">
+                        <img src="{{ game.league.logo }}" alt="pic" class="thumbnail" style="height:50px">
+                        <br>
+
+                        <h4 style="display: inline">{{ game.league.name }}</h4><br>
+                        <span class="text-muted my-0 py-0">{{ game.country.name}}</span>
+                    </div>
+                </div>
+                {% for game in hockey_games %}
+                    <div class="col-md-8 rounded-pill mb-4 py-3" style="border:2px solid #0F3460" >
+                        <div class="row d-flex justify-content-center">
+                            <div class="pt-2 col-md-1 text-center border d-flex justify-content-center align-items-center">
+                                <div>
                                     <p class="border">
                                         {% if game.status.short == 'NS' %}
                                             {{ game.time }}
+                                        {% elif game.status.short == 'BT' %}
+                                             INT
+                                        {% elif game.status.short == 'FT' %}
+                                            END
                                         {% else %}
-                                            {{ game.status.short }}
+                                            {{ game.status.short }} <br>
+                                            {{ game.timer }}:00
                                         {% endif %}
                                     </p>
                                 </div>
 
-                                <div class="col-md-10 border pe-4 py-2">
-                                    <div class="row">
-                                        <div class="col-md-2 border">
-                                            <img src="{{ game.teams.home.logo }}" alt="{{ game.teams.home.name }}" style="height:32px; width:32px" loading="lazy">
-                                        </div>
-                                        <div class="col-9 border d-flex align-items-center">
-                                            {{ game.teams.home.name }}
-                                        </div>
-                                        <div class="col-1 border d-flex align-items-center">
-                                            {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.home }} {% endif %}<br>
-                                        </div>
+                            </div>
+
+                            <div class="col-md-9 pe-4 py-2">
+                                <div class="row">
+                                    <div class="col-md-1 col-sm-1 col-1">
+                                        <img src="{{ game.teams.home.logo }}" alt="{{ game.teams.home.name }}" class="img-fluid bg-transparent border-0" loading="lazy">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <img src="{{ game.teams.away.logo }}" alt="{{ game.teams.away.name }}" style="height:25px; width:25px" loading="lazy">
-                                            {{ game.teams.away.name }} <span class="float-end align-items-center">
-                                            {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.away }} {% endif %}</span><br>
-                                        </div>
+                                    <div class="col-9 d-flex align-items-center fs-5">
+                                        {{ game.teams.home.name }}
+                                    </div>
+                                    <div class="col-1 d-flex align-items-center fs-5">
+                                        {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.home }} {% endif %}<br>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-1 col-sm-1 col-1">
+                                        <img src="{{ game.teams.away.logo }}" alt="{{ game.teams.away.name }}" class="img-thumbnail bg-transparent border-0" loading="lazy">
+                                    </div>
+                                    <div class="col-9 d-flex align-items-center fs-5">
+                                        {{ game.teams.away.name }}
+                                    </div>
+                                    <div class="col-1 d-flex align-items-center fs-5">
+                                        {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.away }} {% endif %}<br>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                    {% else %}
-                        <div class="col-md-5 rounded-pill mx-4 mb-4 py-3" style="border:2px solid #0F3460" >
-                            <div class="row">
-                                <div class="d-flex col-md-2 align-items-center border">
-                                    {% if game.status.short == 'NS' %}
-                                        {{ game.time }}
-                                    {% else %}
-                                        {{ game.status.short }}
-                                    {% endif %}
-                                </div>
-
-                                <div class="col-md-10 border pe-4">
-                                    <img src="{{ game.teams.home.logo }}" alt="{{ game.teams.home.name }}" style="height:25px; width:25px" loading="lazy">
-                                        {{ game.teams.home.name }} <span class="float-end align-items-center">
-                                    {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.home }} {% endif %}</span><br>
-                                    <img src="{{ game.teams.away.logo }}" alt="{{ game.teams.away.name }}" style="height:25px; width:25px" loading="lazy">
-                                        {{ game.teams.away.name }} <span class="float-end align-items-center">
-                                    {% if game.status.short == 'NS' %} 0 {% else %} {{ game.scores.away }} {% endif %}</span><br>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
-        {% endfor %}
     </div>
 
 {% endblock %}

@@ -43,7 +43,7 @@
             </h1>
         </div>
 
-        <nav class="navbar navbar-expand-md">
+        <nav class="navbar navbar-dark navbar-expand-md">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,6 +69,7 @@
         </nav>
 
         <div class="row mt-3 gx-5 border-0">
+
             <ul class="nav nav-tabs justify-content-center pb-2" id="myTab" role="tablist" style="border-bottom-color: #0F3460">
                 <li class="nav-item mx-4" role="presentation">
                     <button class="active btn btn-warning" id="live-tab" data-bs-toggle="tab" data-bs-target="#live" type="button" role="tab" aria-controls="live" aria-selected="true">
@@ -77,15 +78,15 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-outline-primary py-0 mx-3" id="today-minus-two-days-tab" data-bs-toggle="tab" data-bs-target="#today-minus-two-days" type="button" role="tab" aria-controls="today-minus-two-days" aria-selected="false">
-                        <span class="text-uppercase">{{ today_minus_two|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
-                            {{ today_minus_two|date:'d M' }}
+                        <span class="text-uppercase">{{ today_m2|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_m2|date:'d M' }}
                         </span>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-outline-primary py-0 mx-3" id="today_minus_day-tab" data-bs-toggle="tab" data-bs-target="#today_minus_day" type="button" role="tab" aria-controls="today_minus_day" aria-selected="false">
-                         <span class="text-uppercase">{{ today_minus_day|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
-                            {{ today_minus_day|date:'d M' }}
+                         <span class="text-uppercase">{{ today_m1|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_m1|date:'d M' }}
                         </span>
                     </button>
                 </li>
@@ -97,14 +98,14 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-outline-primary py-0 mx-3" id="today_plus_day-tab" data-bs-toggle="tab" data-bs-target="#today_plus_day" type="button" role="tab" aria-controls="today_plus_day" aria-selected="false">
-                        <span class="text-uppercase">{{ today_plus_day|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
-                            {{ today_plus_day|date:'d M' }}</span>
+                        <span class="text-uppercase">{{ today_m1|date:'D' }} <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_p1|date:'d M' }}</span>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="btn btn-outline-primary py-0 mx-3" id="today_plus_two_days-tab" data-bs-toggle="tab" data-bs-target="#today_plus_two_days" type="button" role="tab" aria-controls="today_plus_two_days" aria-selected="false">
-                        <span class="text-uppercase">{{ today_plus_two_days|date:'D' }}  <br style="display:block; margin-top:-10px; line-height:0; ">
-                            {{ today_plus_two_days|date:'d M' }}</span>
+                        <span class="text-uppercase">{{ today_p2|date:'D' }}  <br style="display:block; margin-top:-10px; line-height:0; ">
+                            {{ today_p2|date:'d M' }}</span>
                     </button>
                 </li>
             </ul>
